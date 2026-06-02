@@ -1,0 +1,14 @@
+.DS_Store
+.build/
+dist/
+tmp/
+docs/superpowers/
+.swiftpm/
+DerivedData/
+xcuserdata/
+*.xcuserstate
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+*.swp
+*.tmp
+*.log

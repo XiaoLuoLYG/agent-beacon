@@ -1,0 +1,90 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  cat <<'USAGE'
+Usage:
+  agent-beacon-run --id <id> --name <thread name> [--platform <platform>] [--app <AppName>] [--file <status.json>] -- <command...>
+
+Example:
+  agent-beacon-run --platform generic-cli --id tests --name "Project tests" -- npm test
+USAGE
+}
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+STATUS_BIN="${AGENT_BEACON_STATUS_BIN:-$SCRIPT_DIR/AgentBeaconStatus}"
+
+ID=""
+NAME=""
+PLATFORM="${AGENT_BEACON_PLATFORM:-generic-cli}"
+APP_NAME="${AGENT_BEACON_APP_TARGET:-Terminal}"
+STATUS_FILE="${AGENT_BEACON_STATUS_FILE:-}"
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --id)
+      ID="${2:-}"
+      shift 2
+      ;;
+    --name)
+      NAME="${2:-}"
+      shift 2
+      ;;
+    --platform)
+      PLATFORM="${2:-}"
+      shift 2
+      ;;
+    --app)
+      APP_NAME="${2:-}"
+      shift 2
+      ;;
+    --file)
+      STATUS_FILE="${2:-}"
+      shift 2
+      ;;
+    --help|-h)
+      usage
+      exit 0
+      ;;
+    --)
+      shift
+      break
+      ;;
+    *)
+      echo "Unknown option: $1" >&2
+      usage >&2
+      exit 2
+      ;;
+  esac
+done
+
+if [[ -z "$ID" || -z "$NAME" || $# -eq 0 ]]; then
+  usage >&2
+  exit 2
+fi
+
+if [[ ! -x "$STATUS_BIN" ]]; then
+  echo "AgentBeaconStatus not found at $STATUS_BIN" >&2
+  echo "Set AGENT_BEACON_STATUS_BIN or run scripts/install-local.sh." >&2
+  exit 127
+fi
+
+status_args=(--id "$ID" --platform "$PLATFORM" --name "$NAME" --app "$APP_NAME")
+if [[ -n "$STATUS_FILE" ]]; then
+  status_args+=(--file "$STATUS_FILE")
+fi
+
+"$STATUS_BIN" "${status_args[@]}" --status running >/dev/null
+
+set +e
+"$@"
+exit_code=$?
+set -e
+
+if [[ "$exit_code" -eq 0 ]]; then
+  "$STATUS_BIN" "${status_args[@]}" --status completed >/dev/null
+else
+  "$STATUS_BIN" "${status_args[@]}" --status failed >/dev/null
+fi
+
+exit "$exit_code"

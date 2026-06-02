@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "tasks": [
+    {
+      "id": "generic-waiting-review",
+      "platform": "generic-cli",
+      "threadName": "Review generated README changes",
+      "status": "needs_review",
+      "jumpTarget": {
+        "type": "app",
+        "value": "Terminal"
+      },
+      "updatedAt": "2026-05-31T12:00:00Z"
+    },
+    {
+      "id": "generic-failed-build",
+      "platform": "generic-cli",
+      "threadName": "Fix failing macOS build",
+      "status": "failed",
+      "jumpTarget": {
+        "type": "app",
+        "value": "Terminal"
+      },
+      "updatedAt": "2026-05-31T12:03:00Z"
+    },
+    {
+      "id": "generic-running-tests",
+      "platform": "generic-cli",
+      "threadName": "Run adapter smoke tests",
+      "status": "running",
+      "jumpTarget": {
+        "type": "app",
+        "value": "Terminal"
+      },
+      "updatedAt": "2026-05-31T12:05:00Z"
+    },
+    {
+      "id": "generic-completed-docs",
+      "platform": "generic-cli",
+      "threadName": "Draft UI spec",
+      "status": "completed",
+      "jumpTarget": {
+        "type": "app",
+        "value": "Terminal"
+      },
+      "updatedAt": "2026-05-31T12:07:00Z"
+    }
+  ]
+}
