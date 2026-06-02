@@ -9,6 +9,8 @@
 5. Right-click the menu bar icon and choose `Connect Installed Agents`.
 6. Restart your terminal.
 
+Agent Beacon is a menu bar app. If you do not see the icon after launch, first check whether your current app is full screen or the macOS menu bar is hidden. Move the pointer to the top edge of the screen or leave full screen, then look near the right side of the menu bar.
+
 The preview DMG is unsigned. If macOS blocks the first launch, right-click `Agent Beacon.app`, choose `Open`, then confirm the prompt.
 
 ## Connect CLI Agents

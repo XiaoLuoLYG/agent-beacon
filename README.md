@@ -18,9 +18,7 @@ completed | needs review | failed | running
 
 Hover the panel to see the task list. Click a row to jump back to the app.
 
-| Menu bar | Hover |
-| --- | --- |
-| ![Agent Beacon menu bar panel](docs/assets/agent-beacon-panel.png) | ![Agent Beacon hover panel](docs/assets/agent-beacon-expanded.png) |
+![Agent Beacon hover panel](docs/assets/agent-beacon-expanded.png)
 
 ## ⬇️ Download
 
@@ -31,6 +29,8 @@ Download `AgentBeacon-macOS.dmg` from [Releases](https://github.com/XiaoLuoLYG/a
 3. Open Agent Beacon.
 4. Right-click the menu bar icon and choose `Connect Installed Agents`.
 5. Restart your terminal.
+
+The icon appears in the macOS menu bar. If you are in a full-screen app or your menu bar is hidden, move the pointer to the top edge of the screen or leave full screen first.
 
 This preview DMG is unsigned. If macOS blocks the first launch, right-click `Agent Beacon.app`, choose `Open`, then confirm once.
 

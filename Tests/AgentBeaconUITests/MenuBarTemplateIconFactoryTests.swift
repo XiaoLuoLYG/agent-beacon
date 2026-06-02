@@ -7,7 +7,7 @@ import Testing
 
     #expect(image.isTemplate)
     #expect(image.size == MenuBarTemplateIconFactory.defaultSize)
-    #expect(image.size == NSSize(width: 22, height: 18))
+    #expect(image.size == NSSize(width: 24, height: 18))
 }
 
 @Test func menuBarTemplateIconHasNonBlankAlphaMaskAndTransparentCorners() throws {
@@ -49,8 +49,8 @@ import Testing
     let maskCenterY = Double(bounds.minY + bounds.maxY) / 2
     let imageCenterY = Double(bitmap.pixelsHigh - 1) / 2
 
-    #expect(bounds.width >= 18)
-    #expect(bounds.height >= 9)
+    #expect(bounds.width >= 20)
+    #expect(bounds.height >= 10)
     #expect(abs(maskCenterY - imageCenterY) <= 1)
 }
 

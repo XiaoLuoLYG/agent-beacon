@@ -6,6 +6,8 @@ Download `AgentBeacon-macOS.dmg`, open it, and drag `Agent Beacon.app` to Applic
 
 Open the app from Applications. If macOS blocks the first launch, right-click the app and choose `Open`.
 
+Look for the Agent Beacon icon in the macOS menu bar. Full-screen apps can hide the menu bar until you move the pointer to the top edge of the screen.
+
 ## Connect Agents
 
 Right-click the menu bar icon and choose:

@@ -2,7 +2,7 @@ import AppKit
 import Foundation
 
 public enum MenuBarTemplateIconFactory {
-    public static let defaultSize = NSSize(width: 22, height: 18)
+    public static let defaultSize = NSSize(width: 24, height: 18)
 
     public static func makeImage(size: NSSize = defaultSize) -> NSImage {
         let pixelWidth = max(1, Int(size.width.rounded(.up)))
@@ -28,15 +28,15 @@ public enum MenuBarTemplateIconFactory {
             NSColor.black.setFill()
 
             let capsule = NSBezierPath(
-                roundedRect: NSRect(x: 2, y: 5, width: 18, height: 9),
-                xRadius: 4.5,
-                yRadius: 4.5
+                roundedRect: NSRect(x: 2, y: 4, width: 20, height: 10),
+                xRadius: 5,
+                yRadius: 5
             )
             capsule.fill()
 
             context.cgContext.setBlendMode(.clear)
-            for centerX in [7.0, 11.0, 15.0] {
-                NSBezierPath(ovalIn: NSRect(x: centerX - 1.2, y: 8.3, width: 2.4, height: 2.4)).fill()
+            for centerX in [7.5, 12.0, 16.5] {
+                NSBezierPath(ovalIn: NSRect(x: centerX - 1.35, y: 7.65, width: 2.7, height: 2.7)).fill()
             }
             context.cgContext.setBlendMode(.normal)
         }

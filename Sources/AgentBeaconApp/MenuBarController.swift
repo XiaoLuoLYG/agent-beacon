@@ -23,7 +23,7 @@ final class MenuBarController: NSObject {
         setLocalAgentSessionHistoryEnabled: @escaping (Bool) -> Void,
         quitApp: @escaping () -> Void
     ) {
-        self.statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+        self.statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
         self.topPanelController = topPanelController
         self.connectInstalledAgents = connectInstalledAgents
         self.openStatusFile = openStatusFile
@@ -43,6 +43,7 @@ final class MenuBarController: NSObject {
 
         button.image = MenuBarTemplateIconFactory.makeImage()
         button.imagePosition = .imageOnly
+        button.imageScaling = .scaleProportionallyDown
         button.toolTip = "Agent Beacon"
         button.target = self
         button.action = #selector(statusItemClicked(_:))
