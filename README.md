@@ -18,7 +18,9 @@ completed | needs review | failed | running
 
 Hover the panel to see the task list. Click a row to jump back to the app.
 
-![Expanded Agent Beacon panel](docs/assets/agent-beacon-expanded.png)
+| Menu bar | Hover |
+| --- | --- |
+| ![Agent Beacon menu bar panel](docs/assets/agent-beacon-panel.png) | ![Agent Beacon hover panel](docs/assets/agent-beacon-expanded.png) |
 
 ## ⬇️ Download
 

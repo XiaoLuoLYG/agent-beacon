@@ -168,21 +168,6 @@
         top: 0;
       }
 
-      .caption {
-        position: absolute;
-        right: 178px;
-        bottom: 126px;
-        width: 610px;
-        padding: 28px 32px;
-        border-radius: 26px;
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        color: #dbe3ef;
-        font-size: 29px;
-        line-height: 1.28;
-        font-weight: 650;
-        backdrop-filter: blur(20px);
-      }
     </style>
   </head>
   <body>
@@ -218,7 +203,6 @@
             <img class="shot expanded-shot" src="assets/agent-beacon-expanded.png" alt="" />
           </section>
 
-          <div class="caption">No logs. No chat transcripts. Just the status lights you need to decide where to look next.</div>
         </main>
       </div>
     </div>
@@ -236,9 +220,7 @@
       tl.from(".panel-shot", { opacity: 0, y: -24, scale: 0.94, duration: 0.6, ease: "power2.out" }, 1.2);
       tl.from(".expanded-shot", { opacity: 0, y: 32, scale: 0.965, duration: 0.7, ease: "power2.out" }, 2.55);
       tl.to(".panel-shot", { opacity: 0, y: -20, scale: 0.95, duration: 0.45, ease: "power2.in" }, 2.45);
-      tl.from(".caption", { y: 26, opacity: 0, duration: 0.55, ease: "power2.out" }, 3.35);
       tl.to(".dot.blue", { rotation: 360, scale: 1.16, duration: 1.05, repeat: 5, yoyo: true, ease: "sine.inOut" }, 3.8);
-      tl.to(".caption", { y: -18, opacity: 0, duration: 0.45, ease: "power2.in" }, 8.75);
       tl.to(".screen", { scale: 0.99, duration: 0.7, ease: "power1.inOut" }, 8.9);
 
       window.__timelines["main"] = tl;
