@@ -275,7 +275,7 @@ enum PlatformIconResolutionSource: Equatable, Sendable {
     case appIcon
 }
 
-struct PlatformIconResolution: Equatable, Sendable {
+struct PlatformIconResolution: Equatable {
     let image: NSImage
     let source: PlatformIconResolutionSource
     let url: URL
