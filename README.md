@@ -1,154 +1,65 @@
 # Agent Beacon
 
-Agent Beacon is a small macOS menu bar app for people who run more than one coding agent at a time.
+Tiny status lights for your coding agents. ✨
 
-It gives you one quiet place to answer the practical question: which agent needs attention right now?
+Agent Beacon lives in your macOS menu bar and shows which agent task is done, waiting, failed, or still running.
 
-Click the menu bar icon to see four status lights:
+![Agent Beacon demo](docs/assets/agent-beacon-demo.gif)
+
+## 🟢 Why It Exists
+
+When Codex, Claude Code, Cursor, Gemini CLI, and local scripts are all working at once, it is easy to lose track of what needs attention.
+
+Agent Beacon keeps that answer in one quiet menu bar panel:
 
 ```text
 completed | needs review | failed | running
 ```
 
-Hover the panel to see the matching tasks. Click a task to jump back to its app.
+Hover the panel to see the task list. Click a row to jump back to the app.
 
-Agent Beacon stays local. It does not create agent tasks, manage chats, read source files, or show conversation logs.
+![Expanded Agent Beacon panel](docs/assets/agent-beacon-expanded.png)
 
-## Download
+## ⬇️ Download
 
-The current macOS package is published on the GitHub Releases page as:
+Download `AgentBeacon-macOS.dmg` from [Releases](https://github.com/XiaoLuoLYG/agent-beacon/releases).
 
-```text
-AgentBeacon-macOS.zip
-```
+1. Open the DMG.
+2. Drag `Agent Beacon.app` to `Applications`.
+3. Open Agent Beacon.
+4. Right-click the menu bar icon and choose `Connect Installed Agents`.
+5. Restart your terminal.
 
-After downloading:
+This preview DMG is unsigned. If macOS blocks the first launch, right-click `Agent Beacon.app`, choose `Open`, then confirm once.
 
-1. Unzip the package.
-2. Run `./install.sh` from the unzipped folder.
-3. Open `~/Applications/Agent Beacon.app`.
-4. Restart your terminal.
-
-After that, launch supported CLI agents normally. Agent Beacon records their status in the background and updates the menu bar panel.
-
-> The first release is unsigned. If macOS blocks the app, right-click `Agent Beacon.app`, choose `Open`, then confirm once.
-
-## Supported Sources
-
-Agent Beacon currently reads:
+## ⚡ What It Tracks
 
 - CLI-launched Codex, Claude Code, Cursor, Gemini CLI, and generic commands through local shims.
-- Codex local session metadata from `~/.codex/session_index.jsonl` and `~/.codex/sessions`.
-- Cursor composer header metadata from Cursor's local `globalStorage/state.vscdb`.
-- Explicit status updates written to `~/.agent-beacon/status.json`.
+- Codex local session metadata.
+- Cursor local composer header metadata.
+- Explicit status updates from `~/.agent-beacon/status.json`.
 
-For tools without a stable local API or hook, Agent Beacon only shows states it can verify. It will not guess task status from private UI or chat contents.
+Agent Beacon only shows states it can verify. It does not guess from private app UI.
 
-## Daily Use
+## 🔒 Local By Default
 
-The menu bar icon opens the top panel.
+Agent Beacon does not show conversation bodies, source files, terminal output, prompts, model responses, or logs.
 
-- Green: completed tasks.
-- Yellow: tasks waiting for review, input, permission, or approval.
-- Red: failed or blocked tasks.
-- Running: active tasks.
-
-The expanded list keeps each row simple: platform icon, task name, and one status indicator.
-
-Right-click the menu bar icon to:
-
-- connect installed agents,
-- open the local status file,
-- hide or show Codex/Cursor local history,
-- show the optional desktop floating strip,
-- quit Agent Beacon.
-
-## CLI Helpers
-
-The release package includes two helper commands:
-
-```text
-AgentBeaconStatus
-agent-beacon-run
-```
-
-Install them into `~/.local/bin` if you want to update task status from scripts.
-
-The release `install.sh` does this automatically.
-
-Check your local setup:
-
-```bash
-AgentBeaconStatus doctor
-```
-
-Reconnect shims after installing a new agent:
-
-```bash
-AgentBeaconStatus connect
-```
-
-Wrap any long-running command:
-
-```bash
-agent-beacon-run --platform generic-cli --id tests --name "Project tests" -- npm test
-```
-
-The wrapper marks the task as `running`, runs the command, then marks it `completed` or `failed` based on the exit code.
+It reads small local status records and metadata needed for task names, states, and jump targets.
 
 ## Build From Source
 
-Requirements:
-
-- macOS 13 or newer
-- Xcode command line tools
-- Swift 6 toolchain
-
-Run the app:
-
-```bash
-make run
-```
-
-Run with sample data:
-
-```bash
-make demo
-```
-
-Run tests:
-
 ```bash
 make test
-```
-
-Build the app and release zip:
-
-```bash
+make run
 make package
 ```
 
-Install locally from source:
+More docs:
 
-```bash
-make install
-```
-
-## Privacy
-
-Agent Beacon is local-first. It reads small status records and metadata needed to show task names and states. It does not display message bodies, terminal output, source files, or logs.
-
-More detail is available in [Privacy](docs/PRIVACY.md).
-
-## Documentation
-
-- [Install Guide](docs/INSTALL.md)
+- [Install](docs/INSTALL.md)
 - [Quickstart](docs/QUICKSTART.md)
-- [Adapter Notes](docs/ADAPTERS.md)
-- [Architecture](docs/ARCHITECTURE.md)
-- [UI Notes](docs/UI_SPEC.md)
+- [Privacy](docs/PRIVACY.md)
 - [Roadmap](docs/ROADMAP.md)
 
-## License
-
-Agent Beacon is released under the [MIT License](LICENSE).
+MIT License.

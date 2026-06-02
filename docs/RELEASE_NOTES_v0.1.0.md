@@ -21,14 +21,14 @@ This release is for people who run several coding agents at once and want one qu
 Download:
 
 ```text
-AgentBeacon-macOS.zip
+AgentBeacon-macOS.dmg
 ```
 
-Unzip it, run `./install.sh`, open `~/Applications/Agent Beacon.app`, then restart your terminal.
+Open it, drag `Agent Beacon.app` to Applications, open the app, then restart your terminal after connecting installed agents.
 
 ## macOS Notice
 
-This preview build is unsigned. On first launch, right-click the app, choose `Open`, and confirm the macOS prompt.
+This preview DMG is unsigned. On first launch, right-click the app, choose `Open`, and confirm the macOS prompt.
 
 ## Privacy
 

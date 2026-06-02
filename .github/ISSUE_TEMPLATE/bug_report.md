@@ -14,7 +14,7 @@ Describe what you expected and what happened instead.
 
 - macOS version:
 - Agent Beacon version:
-- Installed from release zip or source:
+- Installed from DMG or source:
 - Agent source involved: Codex, Claude Code, Cursor, Gemini CLI, generic CLI, or custom status file
 
 ## Checks

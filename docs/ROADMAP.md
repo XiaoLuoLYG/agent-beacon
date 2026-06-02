@@ -16,7 +16,7 @@ The first preview focuses on the daily loop:
 - Codex local session metadata.
 - Cursor local composer header metadata.
 - Click-to-activate app targets.
-- Release zip for local installation.
+- DMG release for local installation.
 
 ## v0.2
 

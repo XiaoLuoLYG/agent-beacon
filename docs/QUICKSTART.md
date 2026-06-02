@@ -1,30 +1,20 @@
 # Quickstart
 
-## Use The Release Package
+## Start
 
-Download `AgentBeacon-macOS.zip` from GitHub Releases, unzip it, then run:
+Download `AgentBeacon-macOS.dmg`, open it, and drag `Agent Beacon.app` to Applications.
 
-```bash
-./install.sh
-```
+Open the app from Applications. If macOS blocks the first launch, right-click the app and choose `Open`.
 
-Open:
+## Connect Agents
 
-```bash
-open "$HOME/Applications/Agent Beacon.app"
-```
-
-The first preview release is unsigned. If macOS blocks it, right-click the app, choose `Open`, and confirm once.
-
-## Connect Installed Agents
-
-Open Agent Beacon, then right-click the menu bar icon and choose:
+Right-click the menu bar icon and choose:
 
 ```text
 Connect Installed Agents
 ```
 
-This installs local shims for supported CLI tools when they are found on your Mac:
+Agent Beacon installs local shims for supported CLI tools it finds:
 
 ```text
 codex
@@ -33,55 +23,26 @@ cursor
 gemini
 ```
 
-Restart your terminal. Then launch agents normally. The menu bar panel will update as CLI-launched tasks run and finish.
-
-## Check Setup
-
-If you installed the helper commands into `~/.local/bin`, run:
-
-```bash
-AgentBeaconStatus doctor
-AgentBeaconStatus detect
-```
-
-If a command is connected, `which` should point to Agent Beacon's shim directory:
-
-```bash
-which codex
-```
-
-Expected prefix:
-
-```text
-~/.agent-beacon/shims
-```
+Restart your terminal. Then launch agents normally.
 
 ## Read The Panel
 
-Click the menu bar icon to open the four-light panel.
+Click the menu bar icon to open the four-light panel:
 
 ```text
-green | yellow | red | running
+green | yellow | red | blue
 ```
 
 - Green: completed.
 - Yellow: waiting for review, input, approval, or permission.
 - Red: failed or blocked.
-- Running: active work.
+- Blue: running.
 
 Hover the panel to show task rows. Click a row to jump back to the matching app.
 
-## Use A Custom Command
+## Custom Tasks
 
-Wrap a long-running command:
-
-```bash
-agent-beacon-run --platform generic-cli --id tests --name "Project tests" -- npm test
-```
-
-The wrapper marks the task `running`, runs the command, then marks it `completed` or `failed`.
-
-## Update Status Manually
+Source installs include helper commands for manual status updates:
 
 ```bash
 AgentBeaconStatus --id build --name "Run tests" --status running --app Terminal
@@ -97,33 +58,6 @@ running
 completed
 ```
 
-## Build From Source
-
-Run:
-
-```bash
-make test
-make run
-```
-
-Run with sample data:
-
-```bash
-make demo
-```
-
-Build a release package:
-
-```bash
-make package
-```
-
-Install locally from source:
-
-```bash
-make install
-```
-
 ## Local Data
 
 Agent Beacon stores local files under:
@@ -136,12 +70,6 @@ The default status file is:
 
 ```text
 ~/.agent-beacon/status.json
-```
-
-The read-state file is:
-
-```text
-~/.agent-beacon/read-state.json
 ```
 
 No cloud account or server is required.

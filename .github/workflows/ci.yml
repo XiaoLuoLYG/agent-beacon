@@ -28,4 +28,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: AgentBeacon-macOS
-          path: dist/AgentBeacon-macOS.zip
+          path: dist/AgentBeacon-macOS.dmg

@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #080a0f;
+        font-family: Arial, sans-serif;
+        color: #f8fafc;
+      }
+
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 18%),
+          linear-gradient(145deg, #080a0f 0%, #111827 58%, #07080c 100%);
+      }
+
+      .screen {
+        position: absolute;
+        inset: 44px 64px;
+        border-radius: 34px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.045);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 34px 120px rgba(0, 0, 0, 0.44);
+      }
+
+      .menu-bar {
+        height: 54px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 28px;
+        color: rgba(248, 250, 252, 0.88);
+        background: rgba(255, 255, 255, 0.09);
+        backdrop-filter: blur(22px);
+        font-size: 21px;
+        letter-spacing: 0;
+      }
+
+      .desktop {
+        position: relative;
+        height: calc(100% - 54px);
+        padding: 96px 112px;
+      }
+
+      .copy {
+        width: 760px;
+        display: flex;
+        flex-direction: column;
+        gap: 26px;
+      }
+
+      .eyebrow {
+        color: #a7b0bf;
+        font-size: 28px;
+        font-weight: 700;
+      }
+
+      .headline {
+        font-size: 86px;
+        line-height: 0.98;
+        font-weight: 800;
+        letter-spacing: 0;
+      }
+
+      .subhead {
+        width: 660px;
+        color: #cbd5e1;
+        font-size: 34px;
+        line-height: 1.28;
+        font-weight: 500;
+      }
+
+      .status-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+        width: 620px;
+        margin-top: 8px;
+      }
+
+      .status-card {
+        height: 104px;
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.075);
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .dot {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        box-shadow: 0 0 18px currentColor;
+      }
+
+      .green {
+        color: #30c763;
+        background: #30c763;
+      }
+
+      .yellow {
+        color: #ffb829;
+        background: #ffb829;
+      }
+
+      .red {
+        color: #ed3038;
+        background: #ed3038;
+      }
+
+      .blue {
+        color: #529eff;
+        background: #529eff;
+      }
+
+      .label {
+        color: #dbe3ef;
+        font-size: 19px;
+        font-weight: 700;
+      }
+
+      .product {
+        position: absolute;
+        right: 140px;
+        top: 182px;
+        width: 780px;
+        height: 464px;
+      }
+
+      .shot {
+        position: absolute;
+        width: 780px;
+        height: 464px;
+        object-fit: contain;
+        filter: drop-shadow(0 36px 70px rgba(0, 0, 0, 0.42));
+      }
+
+      .panel-shot {
+        width: 432px;
+        height: 136px;
+        left: 168px;
+        top: 128px;
+      }
+
+      .expanded-shot {
+        left: 0;
+        top: 0;
+      }
+
+      .caption {
+        position: absolute;
+        right: 178px;
+        bottom: 126px;
+        width: 610px;
+        padding: 28px 32px;
+        border-radius: 26px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: #dbe3ef;
+        font-size: 29px;
+        line-height: 1.28;
+        font-weight: 650;
+        backdrop-filter: blur(20px);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="10"
+      data-width="1920"
+      data-height="1080"
+    >
+      <div class="screen">
+        <div class="menu-bar">
+          <div>Agent Beacon</div>
+          <div>Tue 9:41</div>
+        </div>
+
+        <main class="desktop">
+          <section class="copy">
+            <div class="eyebrow">Local-first menu bar companion</div>
+            <div class="headline">Know which agent needs you.</div>
+            <div class="subhead">One quiet panel for completed, waiting, failed, and running coding-agent tasks.</div>
+            <div class="status-grid">
+              <div class="status-card"><div class="dot green"></div><div class="label">completed</div></div>
+              <div class="status-card"><div class="dot yellow"></div><div class="label">review</div></div>
+              <div class="status-card"><div class="dot red"></div><div class="label">failed</div></div>
+              <div class="status-card"><div class="dot blue"></div><div class="label">running</div></div>
+            </div>
+          </section>
+
+          <section class="product">
+            <img class="shot panel-shot" src="assets/agent-beacon-panel.png" alt="" />
+            <img class="shot expanded-shot" src="assets/agent-beacon-expanded.png" alt="" />
+          </section>
+
+          <div class="caption">No logs. No chat transcripts. Just the status lights you need to decide where to look next.</div>
+        </main>
+      </div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      tl.from(".screen", { opacity: 0, scale: 0.985, duration: 0.7, ease: "power2.out" }, 0);
+      tl.from(".menu-bar", { y: -22, opacity: 0, duration: 0.5, ease: "power2.out" }, 0.15);
+      tl.from(".eyebrow", { y: 24, opacity: 0, duration: 0.5, ease: "power2.out" }, 0.45);
+      tl.from(".headline", { y: 42, opacity: 0, duration: 0.7, ease: "power3.out" }, 0.65);
+      tl.from(".subhead", { y: 30, opacity: 0, duration: 0.55, ease: "power2.out" }, 1.05);
+      tl.from(".status-card", { y: 22, opacity: 0, duration: 0.45, stagger: 0.08, ease: "power2.out" }, 1.35);
+      tl.from(".panel-shot", { opacity: 0, y: -24, scale: 0.94, duration: 0.6, ease: "power2.out" }, 1.2);
+      tl.from(".expanded-shot", { opacity: 0, y: 32, scale: 0.965, duration: 0.7, ease: "power2.out" }, 2.55);
+      tl.to(".panel-shot", { opacity: 0, y: -20, scale: 0.95, duration: 0.45, ease: "power2.in" }, 2.45);
+      tl.from(".caption", { y: 26, opacity: 0, duration: 0.55, ease: "power2.out" }, 3.35);
+      tl.to(".dot.blue", { rotation: 360, scale: 1.16, duration: 1.05, repeat: 5, yoyo: true, ease: "sine.inOut" }, 3.8);
+      tl.to(".caption", { y: -18, opacity: 0, duration: 0.45, ease: "power2.in" }, 8.75);
+      tl.to(".screen", { scale: 0.99, duration: 0.7, ease: "power1.inOut" }, 8.9);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

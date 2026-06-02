@@ -11,6 +11,8 @@ BIN_DIR="$DIST_DIR/bin"
 SNAPSHOT_DIR="$DIST_DIR/snapshots"
 PACKAGE_ROOT="$DIST_DIR/AgentBeacon-macOS"
 ZIP_PATH="$DIST_DIR/AgentBeacon-macOS.zip"
+DMG_STAGING_DIR="$DIST_DIR/dmg"
+DMG_PATH="$DIST_DIR/AgentBeacon-macOS.dmg"
 
 cd "$ROOT_DIR"
 
@@ -66,6 +68,30 @@ PLIST
 echo "Packaged app: $APP_DIR"
 echo "Packaged CLI: $BIN_DIR/AgentBeaconStatus"
 echo "Packaged wrapper: $BIN_DIR/agent-beacon-run"
+
+rm -rf "$DMG_STAGING_DIR" "$DMG_PATH"
+mkdir -p "$DMG_STAGING_DIR"
+cp -R "$APP_DIR" "$DMG_STAGING_DIR/Agent Beacon.app"
+ln -s /Applications "$DMG_STAGING_DIR/Applications"
+cat > "$DMG_STAGING_DIR/README.txt" <<'README'
+Agent Beacon
+
+Install:
+1. Drag Agent Beacon.app to Applications.
+2. Open Agent Beacon from Applications.
+3. If macOS blocks the first launch, right-click the app and choose Open.
+
+Agent Beacon is unsigned in this preview release.
+README
+
+hdiutil create \
+  -volname "Agent Beacon" \
+  -srcfolder "$DMG_STAGING_DIR" \
+  -ov \
+  -format UDZO \
+  "$DMG_PATH"
+
+echo "Packaged DMG: $DMG_PATH"
 
 rm -rf "$PACKAGE_ROOT" "$ZIP_PATH"
 mkdir -p "$PACKAGE_ROOT/bin"
