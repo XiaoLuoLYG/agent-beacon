@@ -16,10 +16,10 @@ Agent Beacon keeps that answer in one quiet menu bar panel:
 completed | needs review | failed | running
 ```
 
-Hover the panel to see the task list.
+Click the menu bar icon to open the lights. Hover the panel to expand the task list.
 
 <p align="center">
-  <img src="docs/assets/agent-beacon-menubar-real.png" alt="Agent Beacon in the macOS menu bar" width="760">
+  <img src="docs/assets/agent-beacon-menubar-real.png" alt="Agent Beacon menu bar lights after click" width="760">
 </p>
 
 <p align="center">
