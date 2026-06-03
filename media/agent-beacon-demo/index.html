@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=1920, height=1080" />
+    <meta name="viewport" content="width=1046, height=986" />
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
     <style>
       * {
@@ -12,162 +12,64 @@
       html,
       body {
         margin: 0;
-        width: 1920px;
-        height: 1080px;
+        width: 1046px;
+        height: 986px;
         overflow: hidden;
         background: #080a0f;
-        font-family: Arial, sans-serif;
-        color: #f8fafc;
       }
 
       #root {
         position: relative;
-        width: 1920px;
-        height: 1080px;
+        width: 1046px;
+        height: 986px;
         overflow: hidden;
         background:
-          linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 18%),
-          linear-gradient(145deg, #080a0f 0%, #111827 58%, #07080c 100%);
+          linear-gradient(180deg, rgba(56, 98, 118, 0.92) 0%, rgba(208, 168, 103, 0.9) 78%),
+          #080a0f;
       }
 
-      .screen {
+      .expanded-shot,
+      .menubar-shot {
         position: absolute;
-        inset: 44px 64px;
-        border-radius: 34px;
-        overflow: hidden;
-        background: rgba(255, 255, 255, 0.045);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        box-shadow: 0 34px 120px rgba(0, 0, 0, 0.44);
-      }
-
-      .menu-bar {
-        height: 54px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 28px;
-        color: rgba(248, 250, 252, 0.88);
-        background: rgba(255, 255, 255, 0.09);
-        backdrop-filter: blur(22px);
-        font-size: 21px;
-        letter-spacing: 0;
-      }
-
-      .desktop {
-        position: relative;
-        height: calc(100% - 54px);
-        padding: 96px 112px;
-      }
-
-      .copy {
-        width: 760px;
-        display: flex;
-        flex-direction: column;
-        gap: 26px;
-      }
-
-      .eyebrow {
-        color: #a7b0bf;
-        font-size: 28px;
-        font-weight: 700;
-      }
-
-      .headline {
-        font-size: 86px;
-        line-height: 0.98;
-        font-weight: 800;
-        letter-spacing: 0;
-      }
-
-      .subhead {
-        width: 660px;
-        color: #cbd5e1;
-        font-size: 34px;
-        line-height: 1.28;
-        font-weight: 500;
-      }
-
-      .status-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 14px;
-        width: 620px;
-        margin-top: 8px;
-      }
-
-      .status-card {
-        height: 104px;
-        border-radius: 22px;
-        background: rgba(255, 255, 255, 0.075);
-        border: 1px solid rgba(255, 255, 255, 0.09);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .dot {
-        width: 22px;
-        height: 22px;
-        border-radius: 50%;
-        box-shadow: 0 0 18px currentColor;
-      }
-
-      .green {
-        color: #30c763;
-        background: #30c763;
-      }
-
-      .yellow {
-        color: #ffb829;
-        background: #ffb829;
-      }
-
-      .red {
-        color: #ed3038;
-        background: #ed3038;
-      }
-
-      .blue {
-        color: #529eff;
-        background: #529eff;
-      }
-
-      .label {
-        color: #dbe3ef;
-        font-size: 19px;
-        font-weight: 700;
-      }
-
-      .product {
-        position: absolute;
-        right: 140px;
-        top: 182px;
-        width: 780px;
-        height: 464px;
-      }
-
-      .shot {
-        position: absolute;
-        width: 780px;
-        height: 464px;
-        object-fit: contain;
-        filter: drop-shadow(0 36px 70px rgba(0, 0, 0, 0.42));
-      }
-
-      .panel-shot {
-        width: 432px;
-        height: 136px;
-        left: 168px;
-        top: 128px;
+        user-select: none;
+        -webkit-user-drag: none;
       }
 
       .expanded-shot {
-        left: 0;
-        top: 0;
+        inset: 0;
+        width: 1046px;
+        height: 986px;
+        object-fit: cover;
+        filter: drop-shadow(0 22px 42px rgba(0, 0, 0, 0.24));
       }
 
+      .menubar-wrap {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 612px;
+        height: 226px;
+        overflow: hidden;
+      }
+
+      .menubar-shot {
+        inset: 0;
+        width: 612px;
+        height: 226px;
+        object-fit: cover;
+      }
+
+      .click-ring {
+        position: absolute;
+        top: 108px;
+        right: 78px;
+        width: 76px;
+        height: 76px;
+        border-radius: 50%;
+        border: 5px solid rgba(255, 255, 255, 0.78);
+        box-shadow: 0 0 28px rgba(255, 255, 255, 0.3);
+        opacity: 0;
+      }
     </style>
   </head>
   <body>
@@ -175,53 +77,28 @@
       id="root"
       data-composition-id="main"
       data-start="0"
-      data-duration="10"
-      data-width="1920"
-      data-height="1080"
+      data-duration="8"
+      data-width="1046"
+      data-height="986"
     >
-      <div class="screen">
-        <div class="menu-bar">
-          <div>Agent Beacon</div>
-          <div>Tue 9:41</div>
-        </div>
-
-        <main class="desktop">
-          <section class="copy">
-            <div class="eyebrow">Local-first menu bar companion</div>
-            <div class="headline">Know which agent needs you.</div>
-            <div class="subhead">One quiet panel for completed, waiting, failed, and running coding-agent tasks.</div>
-            <div class="status-grid">
-              <div class="status-card"><div class="dot green"></div><div class="label">completed</div></div>
-              <div class="status-card"><div class="dot yellow"></div><div class="label">review</div></div>
-              <div class="status-card"><div class="dot red"></div><div class="label">failed</div></div>
-              <div class="status-card"><div class="dot blue"></div><div class="label">running</div></div>
-            </div>
-          </section>
-
-          <section class="product">
-            <img class="shot panel-shot" src="assets/agent-beacon-panel.png" alt="" />
-            <img class="shot expanded-shot" src="assets/agent-beacon-expanded.png" alt="" />
-          </section>
-
-        </main>
+      <img class="expanded-shot" src="assets/agent-beacon-hover-real.png" alt="" />
+      <div class="menubar-wrap">
+        <img class="menubar-shot" src="assets/agent-beacon-menubar-real.png" alt="" />
       </div>
+      <div class="click-ring"></div>
     </div>
 
     <script>
       window.__timelines = window.__timelines || {};
       const tl = gsap.timeline({ paused: true });
 
-      tl.from(".screen", { opacity: 0, scale: 0.985, duration: 0.7, ease: "power2.out" }, 0);
-      tl.from(".menu-bar", { y: -22, opacity: 0, duration: 0.5, ease: "power2.out" }, 0.15);
-      tl.from(".eyebrow", { y: 24, opacity: 0, duration: 0.5, ease: "power2.out" }, 0.45);
-      tl.from(".headline", { y: 42, opacity: 0, duration: 0.7, ease: "power3.out" }, 0.65);
-      tl.from(".subhead", { y: 30, opacity: 0, duration: 0.55, ease: "power2.out" }, 1.05);
-      tl.from(".status-card", { y: 22, opacity: 0, duration: 0.45, stagger: 0.08, ease: "power2.out" }, 1.35);
-      tl.from(".panel-shot", { opacity: 0, y: -24, scale: 0.94, duration: 0.6, ease: "power2.out" }, 1.2);
-      tl.from(".expanded-shot", { opacity: 0, y: 32, scale: 0.965, duration: 0.7, ease: "power2.out" }, 2.55);
-      tl.to(".panel-shot", { opacity: 0, y: -20, scale: 0.95, duration: 0.45, ease: "power2.in" }, 2.45);
-      tl.to(".dot.blue", { rotation: 360, scale: 1.16, duration: 1.05, repeat: 5, yoyo: true, ease: "sine.inOut" }, 3.8);
-      tl.to(".screen", { scale: 0.99, duration: 0.7, ease: "power1.inOut" }, 8.9);
+      tl.set(".expanded-shot", { opacity: 0, scale: 0.985, transformOrigin: "top right" }, 0);
+      tl.from(".menubar-wrap", { opacity: 0, y: -12, duration: 0.45, ease: "power2.out" }, 0);
+      tl.to(".click-ring", { opacity: 1, scale: 0.7, duration: 0.18, ease: "power2.out" }, 1.2);
+      tl.to(".click-ring", { opacity: 0, scale: 1.5, duration: 0.55, ease: "power2.out" }, 1.38);
+      tl.to(".expanded-shot", { opacity: 1, scale: 1, duration: 0.72, ease: "power2.out" }, 1.72);
+      tl.to(".menubar-wrap", { opacity: 0, y: -18, duration: 0.38, ease: "power2.in" }, 1.78);
+      tl.to(".expanded-shot", { scale: 1.012, duration: 1.1, yoyo: true, repeat: 2, ease: "sine.inOut" }, 3.05);
 
       window.__timelines["main"] = tl;
     </script>

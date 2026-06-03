@@ -2,7 +2,7 @@
 
 ## Style Prompt
 
-A quiet macOS utility demo on a dark translucent desktop-like canvas. The video should feel calm, local, and precise: soft glass panels, crisp menu bar details, and restrained motion that points attention to the four status lights.
+A quiet macOS utility demo built from real Agent Beacon desktop screenshots. The video should feel calm, local, and precise: start at the actual menu bar status lights, then reveal the actual expanded panel with restrained motion.
 
 ## Colors
 
@@ -24,5 +24,6 @@ A quiet macOS utility demo on a dark translucent desktop-like canvas. The video 
 
 - Do not use loud gradients or decorative blobs.
 - Do not make the video feel like a marketing landing page.
+- Do not create a fake terminal, fake browser, or simulated desktop shell around the screenshots.
 - Do not show fake chat content, source files, or logs.
 - Do not use busy backgrounds behind the product screenshots.

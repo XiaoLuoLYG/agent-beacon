@@ -18,7 +18,10 @@ completed | needs review | failed | running
 
 Hover the panel to see the task list. Click a row to jump back to the app.
 
-![Agent Beacon hover panel](docs/assets/agent-beacon-expanded.png)
+<p align="center">
+  <img src="docs/assets/agent-beacon-menubar-real.png" alt="Agent Beacon in the macOS menu bar" width="340">
+  <img src="docs/assets/agent-beacon-hover-real.png" alt="Agent Beacon expanded panel" width="520">
+</p>
 
 ## ⬇️ Download
 
