@@ -70,6 +70,9 @@ cat > "$APP_CONTENTS/Info.plist" <<'PLIST'
 </plist>
 PLIST
 
+codesign --force --sign - --timestamp=none "$APP_DIR"
+codesign --verify --deep --strict --verbose=2 "$APP_DIR"
+
 echo "Packaged app: $APP_DIR"
 echo "Packaged CLI: $BIN_DIR/AgentBeaconStatus"
 echo "Packaged wrapper: $BIN_DIR/agent-beacon-run"
@@ -95,6 +98,8 @@ hdiutil create \
   -ov \
   -format UDZO \
   "$DMG_PATH"
+
+hdiutil verify "$DMG_PATH"
 
 echo "Packaged DMG: $DMG_PATH"
 
