@@ -14,6 +14,7 @@ This release is for people who run several coding agents at once and want one qu
 - Codex local session metadata support.
 - Cursor local composer header metadata support.
 - Optional desktop floating strip.
+- Branded macOS app icon.
 - Local release package with app, CLI helpers, screenshots, install guide, privacy notes, and license.
 
 ## Download
@@ -22,9 +23,10 @@ Download:
 
 ```text
 AgentBeacon-macOS.dmg
+AgentBeacon-macOS.zip
 ```
 
-Open it, drag `Agent Beacon.app` to Applications, open the app, then restart your terminal after connecting installed agents.
+Open the DMG, drag `Agent Beacon.app` to Applications, open the app, then restart your terminal after connecting installed agents. Use the zip when you also want the CLI helpers, screenshots, docs, and install script in one folder.
 
 ## macOS Notice
 

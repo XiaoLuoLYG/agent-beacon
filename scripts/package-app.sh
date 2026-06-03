@@ -26,6 +26,9 @@ mkdir -p "$APP_MACOS" "$APP_RESOURCES" "$BIN_DIR" "$SNAPSHOT_DIR"
 cp "$ROOT_DIR/.build/release/AgentBeacon" "$APP_MACOS/AgentBeacon"
 cp "$ROOT_DIR/.build/release/AgentBeaconStatus" "$APP_RESOURCES/AgentBeaconStatus"
 cp "$ROOT_DIR/scripts/agent-beacon-run" "$APP_RESOURCES/agent-beacon-run"
+if [[ -f "$ROOT_DIR/Assets/AppIcon/AgentBeacon.icns" ]]; then
+  cp "$ROOT_DIR/Assets/AppIcon/AgentBeacon.icns" "$APP_RESOURCES/AgentBeacon.icns"
+fi
 if [[ -d "$ROOT_DIR/Assets/PlatformIcons" ]]; then
   mkdir -p "$APP_RESOURCES/PlatformIcons"
   cp "$ROOT_DIR/Assets/PlatformIcons/"*.png "$APP_RESOURCES/PlatformIcons/" 2>/dev/null || true
@@ -49,6 +52,8 @@ cat > "$APP_CONTENTS/Info.plist" <<'PLIST'
   <string>Agent Beacon</string>
   <key>CFBundleDisplayName</key>
   <string>Agent Beacon</string>
+  <key>CFBundleIconFile</key>
+  <string>AgentBeacon</string>
   <key>CFBundlePackageType</key>
   <string>APPL</string>
   <key>CFBundleShortVersionString</key>
