@@ -19,10 +19,6 @@ completed | needs review | failed | running
 Click the menu bar icon to open the lights. Hover the panel to expand the task list.
 
 <p align="center">
-  <img src="docs/assets/agent-beacon-menubar-real.png" alt="Agent Beacon menu bar lights after click" width="760">
-</p>
-
-<p align="center">
   <img src="docs/assets/agent-beacon-hover-real.png" alt="Agent Beacon expanded panel" width="760">
 </p>
 
