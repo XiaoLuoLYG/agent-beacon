@@ -2,7 +2,7 @@
 
 Tiny status lights for your coding agents. ✨
 
-Agent Beacon lives in your macOS menu bar and shows which agent task is done, waiting, failed, or still running.
+Agent Beacon lives in your macOS menu bar, shows which agent task is done, waiting, failed, or still running, and lets you click a row to jump back to the app.
 
 ![Agent Beacon demo](docs/assets/agent-beacon-demo.gif)
 
@@ -16,11 +16,14 @@ Agent Beacon keeps that answer in one quiet menu bar panel:
 completed | needs review | failed | running
 ```
 
-Hover the panel to see the task list. Click a row to jump back to the app.
+Hover the panel to see the task list.
 
 <p align="center">
-  <img src="docs/assets/agent-beacon-menubar-real.png" alt="Agent Beacon in the macOS menu bar" width="340">
-  <img src="docs/assets/agent-beacon-hover-real.png" alt="Agent Beacon expanded panel" width="520">
+  <img src="docs/assets/agent-beacon-menubar-real.png" alt="Agent Beacon in the macOS menu bar" width="760">
+</p>
+
+<p align="center">
+  <img src="docs/assets/agent-beacon-hover-real.png" alt="Agent Beacon expanded panel" width="760">
 </p>
 
 ## ⬇️ Download
@@ -43,6 +46,8 @@ This preview DMG is unsigned. If macOS blocks the first launch, right-click `Age
 - Codex local session metadata.
 - Cursor local composer header metadata.
 - Explicit status updates from `~/.agent-beacon/status.json`.
+
+More agent integrations are in progress.
 
 Agent Beacon only shows states it can verify. It does not guess from private app UI.
 
