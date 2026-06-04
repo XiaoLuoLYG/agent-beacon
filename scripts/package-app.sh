@@ -13,54 +13,6 @@ PACKAGE_ROOT="$DIST_DIR/AgentBeacon-macOS"
 ZIP_PATH="$DIST_DIR/AgentBeacon-macOS.zip"
 DMG_STAGING_DIR="$DIST_DIR/dmg"
 DMG_PATH="$DIST_DIR/AgentBeacon-macOS.dmg"
-APP_NOTARY_ZIP="$DIST_DIR/AgentBeacon-app-notary.zip"
-SIGN_IDENTITY="${AGENTBEACON_CODESIGN_IDENTITY:--}"
-NOTARIZE="${AGENTBEACON_NOTARIZE:-0}"
-
-require_env() {
-  local name="$1"
-  if [[ -z "${!name:-}" ]]; then
-    echo "$name is required when AGENTBEACON_NOTARIZE=1" >&2
-    exit 64
-  fi
-}
-
-sign_code() {
-  local target="$1"
-  if [[ "$SIGN_IDENTITY" == "-" ]]; then
-    codesign --force --sign - --timestamp=none "$target"
-  else
-    codesign --force --sign "$SIGN_IDENTITY" --options runtime --timestamp "$target"
-  fi
-}
-
-notarize_file() {
-  local path="$1"
-  if [[ "$NOTARIZE" != "1" ]]; then
-    return
-  fi
-
-  require_env AGENTBEACON_NOTARY_APPLE_ID
-  require_env AGENTBEACON_NOTARY_TEAM_ID
-  require_env AGENTBEACON_NOTARY_PASSWORD
-
-  xcrun notarytool submit "$path" \
-    --apple-id "$AGENTBEACON_NOTARY_APPLE_ID" \
-    --team-id "$AGENTBEACON_NOTARY_TEAM_ID" \
-    --password "$AGENTBEACON_NOTARY_PASSWORD" \
-    --wait
-}
-
-if [[ "$NOTARIZE" == "1" ]]; then
-  require_env AGENTBEACON_CODESIGN_IDENTITY
-  require_env AGENTBEACON_NOTARY_APPLE_ID
-  require_env AGENTBEACON_NOTARY_TEAM_ID
-  require_env AGENTBEACON_NOTARY_PASSWORD
-  if [[ "$SIGN_IDENTITY" == "-" ]]; then
-    echo "AGENTBEACON_CODESIGN_IDENTITY must be a Developer ID Application identity when AGENTBEACON_NOTARIZE=1" >&2
-    exit 64
-  fi
-fi
 
 cd "$ROOT_DIR"
 
@@ -118,18 +70,8 @@ cat > "$APP_CONTENTS/Info.plist" <<'PLIST'
 </plist>
 PLIST
 
-sign_code "$APP_RESOURCES/AgentBeaconStatus"
-sign_code "$BIN_DIR/AgentBeaconStatus"
-sign_code "$APP_DIR"
+codesign --force --sign - --timestamp=none "$APP_DIR"
 codesign --verify --deep --strict --verbose=2 "$APP_DIR"
-
-if [[ "$NOTARIZE" == "1" ]]; then
-  rm -f "$APP_NOTARY_ZIP"
-  ditto -c -k --sequesterRsrc --keepParent "$APP_DIR" "$APP_NOTARY_ZIP"
-  notarize_file "$APP_NOTARY_ZIP"
-  xcrun stapler staple "$APP_DIR"
-  xcrun stapler validate "$APP_DIR"
-fi
 
 echo "Packaged app: $APP_DIR"
 echo "Packaged CLI: $BIN_DIR/AgentBeaconStatus"
@@ -145,18 +87,10 @@ Agent Beacon
 Install:
 1. Drag Agent Beacon.app to Applications.
 2. Open Agent Beacon from Applications.
-README
-if [[ "$NOTARIZE" == "1" ]]; then
-  cat >> "$DMG_STAGING_DIR/README.txt" <<'README'
-3. Agent Beacon is Developer ID signed and notarized for direct launch.
-README
-else
-  cat >> "$DMG_STAGING_DIR/README.txt" <<'README'
 3. If macOS blocks the first launch, right-click the app and choose Open.
 
 Agent Beacon is unsigned in this preview release.
 README
-fi
 
 hdiutil create \
   -volname "Agent Beacon" \
@@ -167,13 +101,6 @@ hdiutil create \
 
 hdiutil verify "$DMG_PATH"
 
-notarize_file "$DMG_PATH"
-if [[ "$NOTARIZE" == "1" ]]; then
-  xcrun stapler staple "$DMG_PATH"
-  xcrun stapler validate "$DMG_PATH"
-  hdiutil verify "$DMG_PATH"
-fi
-
 echo "Packaged DMG: $DMG_PATH"
 
 rm -rf "$PACKAGE_ROOT" "$ZIP_PATH"
@@ -183,7 +110,9 @@ cp -R "$APP_DIR" "$PACKAGE_ROOT/Agent Beacon.app"
 cp "$BIN_DIR/AgentBeaconStatus" "$PACKAGE_ROOT/bin/AgentBeaconStatus"
 cp "$BIN_DIR/agent-beacon-run" "$PACKAGE_ROOT/bin/agent-beacon-run"
 cp "$ROOT_DIR/scripts/install-release.sh" "$PACKAGE_ROOT/install.sh"
+cp "$ROOT_DIR/scripts/install-from-release.sh" "$PACKAGE_ROOT/install-from-release.sh"
 chmod +x "$PACKAGE_ROOT/install.sh"
+chmod +x "$PACKAGE_ROOT/install-from-release.sh"
 cp "$SNAPSHOT_DIR"/*.png "$PACKAGE_ROOT/screenshots/"
 cp "$ROOT_DIR/README.md" "$PACKAGE_ROOT/README.md"
 cp "$ROOT_DIR/LICENSE" "$PACKAGE_ROOT/LICENSE"

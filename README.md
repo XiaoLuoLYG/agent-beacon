@@ -22,19 +22,19 @@ Click the menu bar icon to open the lights. Hover the panel to expand the task l
   <img src="docs/assets/agent-beacon-hover-real.png" alt="Agent Beacon expanded panel" width="760">
 </p>
 
-## ⬇️ Download
+## ⬇️ Install
 
-Download `AgentBeacon-macOS.dmg` from [Releases](https://github.com/XiaoLuoLYG/agent-beacon/releases).
+The lowest-friction preview install is a one-line Terminal command:
 
-1. Open the DMG.
-2. Drag `Agent Beacon.app` to `Applications`.
-3. Open Agent Beacon.
-4. Right-click the menu bar icon and choose `Connect Installed Agents`.
-5. Restart your terminal.
+```bash
+curl -fsSL https://raw.githubusercontent.com/XiaoLuoLYG/agent-beacon/main/scripts/install-from-release.sh | bash
+```
+
+It downloads the latest release, installs `Agent Beacon.app` to `~/Applications`, installs the helper commands, connects supported agent CLIs, removes macOS quarantine from the installed app, and opens Agent Beacon.
 
 The icon appears in the macOS menu bar. If you are in a full-screen app or your menu bar is hidden, move the pointer to the top edge of the screen or leave full screen first.
 
-Public DMG releases should be Developer ID signed and notarized. If you are using an unsigned preview build and macOS blocks the first launch, right-click `Agent Beacon.app`, choose `Open`, then confirm once.
+The DMG remains available on [Releases](https://github.com/XiaoLuoLYG/agent-beacon/releases), but unsigned DMG installs can trigger Gatekeeper's first-launch warning. Use the one-line installer for the preview build if you want the smoother path.
 
 ## ⚡ What It Tracks
 
@@ -66,7 +66,6 @@ More docs:
 - [Install](docs/INSTALL.md)
 - [Quickstart](docs/QUICKSTART.md)
 - [Privacy](docs/PRIVACY.md)
-- [Release Signing](docs/RELEASE_SIGNING.md)
 - [Roadmap](docs/ROADMAP.md)
 
 MIT License.

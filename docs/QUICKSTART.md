@@ -2,9 +2,11 @@
 
 ## Start
 
-Download `AgentBeacon-macOS.dmg`, open it, and drag `Agent Beacon.app` to Applications.
+Install the preview release:
 
-Open the app from Applications. If macOS blocks the first launch, right-click the app and choose `Open`.
+```bash
+curl -fsSL https://raw.githubusercontent.com/XiaoLuoLYG/agent-beacon/main/scripts/install-from-release.sh | bash
+```
 
 Look for the Agent Beacon icon in the macOS menu bar. Full-screen apps can hide the menu bar until you move the pointer to the top edge of the screen.
 
