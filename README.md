@@ -34,7 +34,7 @@ Download `AgentBeacon-macOS.dmg` from [Releases](https://github.com/XiaoLuoLYG/a
 
 The icon appears in the macOS menu bar. If you are in a full-screen app or your menu bar is hidden, move the pointer to the top edge of the screen or leave full screen first.
 
-This preview DMG is unsigned. If macOS blocks the first launch, right-click `Agent Beacon.app`, choose `Open`, then confirm once.
+Public DMG releases should be Developer ID signed and notarized. If you are using an unsigned preview build and macOS blocks the first launch, right-click `Agent Beacon.app`, choose `Open`, then confirm once.
 
 ## ⚡ What It Tracks
 
@@ -66,6 +66,7 @@ More docs:
 - [Install](docs/INSTALL.md)
 - [Quickstart](docs/QUICKSTART.md)
 - [Privacy](docs/PRIVACY.md)
+- [Release Signing](docs/RELEASE_SIGNING.md)
 - [Roadmap](docs/ROADMAP.md)
 
 MIT License.
